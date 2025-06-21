@@ -216,9 +216,104 @@ git commit -m "feat(auth): Add user login form"</code></pre></div>
                 </div>
             </div>
         </section>
-        
+
+        <!-- Env Vars Section -->
+        <section id="env-vars" class="py-20 px-4">
+             <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="section-title mb-4 animated slide-up">Quản Lý Cấu Hình Môi Trường</h2>
+                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Cùng một artifact, hoạt động khác nhau ở mỗi môi trường nhờ cấu hình ngoài.</p>
+                </div>
+                <div class="grid lg:grid-cols-3 gap-8 items-center">
+                    <!-- Artifact -->
+                    <div class="flex flex-col items-center animated slide-up">
+                        <div class="w-24 h-24 bg-sky-500/20 border-2 border-sky-400 rounded-lg flex items-center justify-center shadow-lg shadow-sky-500/20 flex-col text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-sky-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4M4 7v10l8 4M12 11v10" /></svg>
+                        </div>
+                        <h4 class="mt-4 text-lg font-bold">Artifact (Docker Image)</h4>
+                        <p class="text-sm">myapp:<code class="commit-hash">e4f5g6h</code></p>
+                    </div>
+                    <!-- Arrow -->
+                    <div class="text-center text-slate-600 hidden lg:block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </div>
+                     <!-- Environments -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="card p-4 rounded-lg animated slide-up" style="animation-delay: 0.4s;">
+                            <h4 class="font-bold text-indigo-300">PREPROD Environment</h4>
+                            <pre><code class="text-xs block text-indigo-300/80"># .env.preprod
+DATABASE_URL=postgres://.../db_preprod
+API_KEY=dev_key_...
+NODE_ENV=development
+</code></pre>
+                        </div>
+                         <div class="card p-4 rounded-lg animated slide-up" style="animation-delay: 0.6s;">
+                            <h4 class="font-bold text-amber-300">STAGING Environment</h4>
+                            <pre><code class="text-xs block text-amber-300/80"># .env.staging
+DATABASE_URL=postgres://.../db_staging
+API_KEY=staging_key_...
+NODE_ENV=staging
+</code></pre>
+                        </div>
+                         <div class="card p-4 rounded-lg animated slide-up" style="animation-delay: 0.8s;">
+                            <h4 class="font-bold text-green-300">PRODUCTION Environment</h4>
+                            <pre><code class="text-xs block text-green-300/80"># .env.production
+DATABASE_URL=postgres://.../db_production
+API_KEY=prod_key_...
+NODE_ENV=production
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <!-- GitHub Actions UI Example Section -->
+        <section id="github-actions" class="py-20 px-4 bg-slate-900/50">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="section-title mb-4 animated slide-up">Mô Phỏng Giao Diện GitHub Actions</h2>
+                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Trực quan hóa một pipeline CI/CD 4 bước từ code đến production.</p>
+                </div>
+
+                <div class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden animated slide-up">
+                    <div class="p-4 border-b border-slate-800">
+                        <h3 class="text-lg font-bold flex items-center">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+                           Deploy to Production
+                           <span class="ml-2 text-xs bg-slate-700 text-slate-300 font-mono px-2 py-1 rounded-md">#e4f5g6h</span>
+                        </h3>
+                        <p class="text-sm text-slate-400 mt-1">Triggered by push to `main` by <span class="font-semibold text-sky-400">dev_user</span></p>
+                    </div>
+                    <div class="flex flex-col md:flex-row">
+                        <!-- Left: Jobs List -->
+                        <div class="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-slate-800 p-4">
+                            <h4 class="font-bold mb-2">Jobs</h4>
+                            <div class="space-y-1">
+                                <div class="job-item flex items-center p-2 rounded-md bg-slate-800"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-semibold text-white">build</span></div>
+                                <div class="job-item flex items-center p-2 rounded-md bg-slate-800"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-semibold text-white">deploy-preprod</span></div>
+                                <div class="job-item flex items-center p-2 rounded-md bg-slate-800"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-semibold text-white">deploy-staging</span></div>
+                                <div class="job-item flex items-center p-2 rounded-md bg-sky-800/50 border border-sky-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-sky-400 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h5" /><path stroke-linecap="round" stroke-linejoin="round" d="M4 11a8 8 0 108-8" /></svg><span class="font-semibold text-white">deploy-production</span></div>
+                            </div>
+                        </div>
+                        <!-- Right: Steps Log -->
+                        <div class="w-full md:w-2/3 p-4">
+                            <h4 class="font-bold mb-2">Logs for `deploy-production`</h4>
+                            <div class="bg-black rounded-lg p-4 font-mono text-sm">
+                                <div class="step-log active">
+                                    <div class="flex items-center text-green-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span>Job setup</span></div>
+                                    <div class="flex items-center text-yellow-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" /></svg><span>Waiting for approval from `product-owner`</span></div>
+                                    <div class="text-gray-500"><span>></span><span class="animate-pulse">_</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Bug Handling Section -->
-        <section id="bug-handling" class="py-20 px-4">
+        <section id="bug-handling" class="py-20 px-4 bg-slate-900/50">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
                     <h2 class="section-title mb-4 animated slide-up">Quy Trình Xử Lý Lỗi</h2>
@@ -267,6 +362,7 @@ git pull origin main</code></pre></div>
                         <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">5. Review Kỹ Lưỡng</h4><p class="mb-4">PR mới này cần được review cẩn thận hơn, đặc biệt là bởi QA/QC, trước khi được phép merge vào `main` một lần nữa.</p></div>
                     </div>
                 </div>
+
             </div>
         </section>
 
