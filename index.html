@@ -306,33 +306,50 @@ NODE_ENV=production
             </div>
         </section>
         
-        <!-- NEW SECTION START -->
+        <!-- Bug Handling & Release Section -->
         <section id="bug-handling" class="py-20 px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
-                    <h2 class="section-title mb-4 animated slide-up">Quy Trình Xử Lý Sự Cố & Release</h2>
+                    <h2 class="section-title mb-4 animated slide-up">Kịch Bản Release và Xử Lý Sự Cố Nâng Cao</h2>
                     <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Các kịch bản xử lý bug và release thường gặp trong quy trình nâng cao.</p>
                 </div>
 
-                <!-- Scenario: Bug found on Staging -->
+                <!-- Scenario 1: Block release -->
                 <div class="mb-16">
-                    <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.748 2 6.492 2 7.292c0 1.257.11 2.478.324 3.65.234 1.282.66 2.493 1.255 3.615.602 1.133 1.39 2.16 2.324 3.053.942.903 2.01 1.66 3.168 2.277.537.29 1.1.528 1.69.708.577.173 1.17.258 1.78.258s1.203-.085 1.78-.258c.59-.18 1.153-.418 1.69-.708 1.158-.617 2.226-1.374 3.168-2.277.934-.893 1.722-1.92 2.324-3.053.595-1.122 1.02-2.333 1.255-3.615.214-1.172.324-2.393.324-3.65 0-.799-.056-1.544-.166-2.292A11.954 11.954 0 0110 1.944zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" /></svg>Kịch bản: "Ôm code lỗi" khi release</h3>
+                    <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.748 2 6.492 2 7.292c0 1.257.11 2.478.324 3.65.234 1.282.66 2.493 1.255 3.615.602 1.133 1.39 2.16 2.324 3.053.942.903 2.01 1.66 3.168 2.277.537.29 1.1.528 1.69.708.577.173 1.17.258 1.78.258s1.203-.085 1.78-.258c.59-.18 1.153-.418 1.69-.708 1.158-.617 2.226-1.374 3.168-2.277.934-.893 1.722-1.92 2.324-3.053.595-1.122 1.02-2.333 1.255-3.615.214-1.172.324-2.393.324-3.65 0-.799-.056-1.544-.166-2.292A11.954 11.954 0 0110 1.944zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" /></svg>Kịch bản 1: Tạm dừng Release để sửa bug trên Staging</h3>
                     <div class="mt-4 mb-6 text-sm bg-red-900/50 p-3 rounded-md border-l-4 border-red-500">
-                        <p><strong class="text-red-400">Tình huống:</strong> Dev1 merge `feat-1` vào `main`, deploy lên Staging thì QA phát hiện bug. Cùng lúc đó, `feat-2` của Dev2 đã được test kỹ và sẵn sàng để release. Làm thế nào để release `feat-2` mà không "dính" phải code lỗi của `feat-1`?</p>
+                        <p><strong class="text-red-400">Tình huống:</strong> Dev1 merge `feat-1` vào `main`, deploy lên Staging thì QA phát hiện bug. Cùng lúc đó, `feat-2` của Dev2 cũng đã merge vào `main`. Làm thế nào để release cả hai khi `feat-1` được sửa xong?</p>
                         <ul class="list-disc pl-5 mt-2 space-y-1">
-                            <li><strong class="highlight-text">Vấn đề:</strong> `main` branch hiện đang không ổn định. Không thể tạo tag release từ `main` lúc này.</li>
+                            <li><strong class="highlight-text">Hành động:</strong> Toàn bộ việc release sẽ bị tạm dừng. Không ai được tạo tag release cho đến khi bug của `feat-1` được sửa.</li>
                         </ul>
                     </div>
                     <div class="relative timeline-container">
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Hoàn tác (Revert) Pull Request lỗi</h4><p class="mb-4"><strong class="highlight-text">Hành động khẩn cấp:</strong> Người có thẩm quyền (Tech Lead) sẽ sử dụng tính năng "Revert" trên GitHub/GitLab để hoàn tác PR của `feat-1`. Thao tác này sẽ tạo ra một PR mới, chứa một commit `revert` để loại bỏ các thay đổi của `feat-1` khỏi `main`.</p></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Merge PR Hoàn tác</h4><p class="mb-4">Nhanh chóng duyệt và merge PR hoàn tác này vào `main`. Hành động này sẽ đưa `main` trở lại trạng thái ổn định trước khi `feat-1` được merge. CI/CD sẽ deploy lại phiên bản sạch này lên Staging.</p><p>Lúc này `main` chỉ chứa code của `feat-2` và các tính năng ổn định trước đó.</p></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. Tag và Release `feat-2`</h4><p class="mb-4">Bây giờ `main` đã an toàn. Người có thẩm quyền tạo Git Tag trên commit mới nhất của `main` để release `feat-2`.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git tag -a v2.1.0 -m "Release feature 2"
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Dev1 tạo branch `bugfix/*` từ `feature/feat-1`</h4><p class="mb-4">Dev1 tạo branch mới để sửa lỗi, sau đó tạo PR để merge bản vá vào `main`.</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Merge bản vá vào `main`</h4><p class="mb-4">Sau khi PR sửa lỗi được duyệt, nó sẽ được merge vào `main`. CI/CD tự động deploy phiên bản mới nhất của `main` (đã chứa `feat-1` đã sửa, và `feat-2`) lên Staging.</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. QA kiểm tra lại Staging</h4><p class="mb-4">QA/QC xác nhận lại toàn bộ các tính năng trên Staging. Nếu mọi thứ ổn định, team sẽ quyết định đi đến bước tiếp theo.</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Tag và Release</h4><p class="mb-4">Người có thẩm quyền tạo Git Tag trên commit mới nhất của `main` để release. Cả `feat-1` và `feat-2` sẽ cùng được phát hành.</p></div>
+                    </div>
+                </div>
+
+                <!-- Scenario 2: Cherry-pick release -->
+                <div class="mb-16">
+                    <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-cyan-400" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" /></svg>Kịch bản 2: Release "nóng" một Feature (Cherry-pick)</h3>
+                    <div class="mt-4 mb-6 text-sm bg-cyan-900/50 p-3 rounded-md border-l-4 border-cyan-500">
+                        <p><strong class="text-cyan-400">Tình huống:</strong> `Feat1` (commit <code class="commit-hash">bad123</code>) được merge vào `main` và có bug. Sau đó Dev2 tạo branch `feature/feat2` từ `main` (đã dính bug), và hoàn thành `Feat2` (commit <code class="commit-hash">good456</code>). Cần release `Feat2` ngay lập tức mà không chờ `Feat1` sửa xong.</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li><strong class="highlight-text">Vấn đề:</strong> Không thể tag `main` để release. Không thể `revert` commit `bad123` vì sẽ gây conflict cho branch `feature/feat2`.</li>
+                            <li><strong class="highlight-text">Giải pháp:</strong> Tạo một branch release tạm thời và "nhặt" (cherry-pick) commit của `Feat2` sang.</li>
+                        </ul>
+                    </div>
+                    <div class="relative timeline-container">
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Tìm commit "sạch" cuối cùng</h4><p class="mb-4">Xác định mã hash của commit trên `main` ngay trước khi `Feat1` được merge. Giả sử đó là <code class="commit-hash">stable00</code>.</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Tạo `release` branch từ commit "sạch"</h4><p class="mb-4">Tạo một branch mới cho việc release từ commit ổn định đã xác định.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout -b release/feat2-only stable00</code></pre></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. "Nhặt" commit của `Feat2`</h4><p class="mb-4">Áp dụng các commit của `Feat2` vào `release` branch vừa tạo. Git sẽ chỉ lấy nội dung thay đổi của commit đó.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block"># Lấy mã hash của commit Feat2 từ branch feature/feat2
+git cherry-pick good456</code></pre></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Test và Deploy `release` branch</h4><p class="mb-4">Deploy branch `release/feat2-only` lên một môi trường test tạm để QA xác nhận. Nếu ổn, push branch này lên và tạo Tag từ commit cuối cùng của branch này để deploy Production.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git push origin release/feat2-only
+git tag -a v2.1.0 -m "Release Feature 2 only" release/feat2-only
 git push origin v2.1.0</code></pre></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Dev1 Sửa lỗi trên Branch của mình</h4><p class="mb-4">Dev1 quay lại `feature/feat-1` branch. Trước khi sửa lỗi, họ cần kéo commit `revert` từ `main` về branch của mình. Sau đó, họ sửa lỗi, và mở lại một PR mới để `feat-1` được review và merge lại vào `main` khi đã sẵn sàng.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout feature/feat-1
-git pull origin main # Lấy commit revert về
-# ...Sửa lỗi...
-git commit -m "fix(feat-1): Fix bug and re-apply changes"
-git push</code></pre></div>
+                         <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">5. Dọn dẹp và xử lý `main`</h4><p class="mb-4">Sau khi release thành công, Dev1 tiếp tục sửa bug của `Feat1` và merge vào `main`. Branch `feature/feat2` của Dev2 sau đó cũng được merge vào `main` như bình thường. Branch `release/feat2-only` có thể xóa đi.</p></div>
                     </div>
                 </div>
             </div>
