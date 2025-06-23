@@ -148,18 +148,18 @@
                 <div class="grid lg:grid-cols-3 gap-8">
                     <div class="card p-6 rounded-lg animated slide-up" style="animation-delay: 0.4s;">
                         <div class="mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg></div>
-                        <h3 class="text-xl font-bold mb-2">`main` là Production Branch</h3>
-                        <p>Branch `main` luôn ở trạng thái sẵn sàng để deploy (production-ready). Mọi thay đổi phải được gộp thông qua Pull Request.</p>
+                        <h3 class="text-xl font-bold mb-2">`main` là Integration Branch</h3>
+                        <p>Branch `main` là nơi tích hợp tất cả các tính năng và được deploy liên tục lên môi trường Staging để kiểm thử.</p>
                     </div>
                     <div class="card p-6 rounded-lg animated slide-up" style="animation-delay: 0.6s;">
                         <div class="mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657l-4.243-4.243m0 0l-4.243 4.243m4.243-4.243L12 6.75m4.243 7.664l4.243-4.243" /></svg></div>
                         <h3 class="text-xl font-bold mb-2">Phát triển trên Feature Branch</h3>
-                        <p>Mỗi tính năng hoặc bản sửa lỗi được phát triển trên một branch riêng biệt để cô lập các thay đổi, tránh ảnh hưởng đến `main`.</p>
+                        <p>Mỗi tính năng hoặc bản sửa lỗi được phát triển trên một branch riêng biệt để cô lập các thay đổi, tránh ảnh hưởng đến người khác.</p>
                     </div>
                     <div class="card p-6 rounded-lg animated slide-up" style="animation-delay: 0.8s;">
                         <div class="mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
-                        <h3 class="text-xl font-bold mb-2">Pull Request làm Cổng Kiểm Soát</h3>
-                        <p>PR là nơi diễn ra code review, chạy test tự động (CI) và thảo luận trước khi bất kỳ đoạn code nào được phép gộp vào `main`.</p>
+                        <h3 class="text-xl font-bold mb-2">Release bằng Git Tag</h3>
+                        <p>Việc deploy lên Production được quyết định bằng cách tạo Git Tag trên một commit đã được kiểm thử kỹ lưỡng trên `main`.</p>
                     </div>
                 </div>
             </div>
@@ -180,8 +180,10 @@ git checkout -b feature/user-login</code></pre></div>
                     <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" /></svg>2. Commit Các Thay Đổi</h3><p class="mb-4">Làm việc trên branch và commit các thay đổi một cách logic và thường xuyên.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git add .
 git commit -m "feat(auth): Add user login form"</code></pre></div>
                     <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>3. Mở Pull Request</h3><p class="mb-4">Khi sẵn sàng, đẩy branch của bạn lên và mở một Pull Request để team review. Mô tả rõ những gì bạn đã làm.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git push origin feature/user-login</code></pre></div>
-                    <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" /><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" /></svg>4. Review và Thảo Luận</h3><p class="mb-4">Đây là giai đoạn quan trọng nhất. Team sẽ review code, CI sẽ chạy tests. Bạn sẽ cập nhật code dựa trên feedback và push các commit mới lên cùng branch đó.</p></div>
-                    <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>5. Merge và Dọn Dẹp</h3><p class="mb-4">Sau khi PR được duyệt (approved), gộp nó vào `main`. Code của bạn giờ đã là một phần của sản phẩm. Branch đã được merge nên được xóa đi.</p></div>
+                    <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" /><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" /></svg>4. Review, Thảo Luận và Chạy CI</h3><p class="mb-4">Team sẽ review code, CI sẽ chạy tests. Sau khi được duyệt, code sẽ được merge vào `main` và deploy lên Staging.</p></div>
+                    <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>5. Kiểm thử trên Staging và Release</h3><p class="mb-4">QA/QC kiểm thử tính năng trên môi trường Staging. Nếu mọi thứ ổn định, một người có thẩm quyền sẽ tạo Git Tag trên commit tương ứng của `main` để deploy lên Production.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block"># Tag a commit on main to trigger production deploy
+git tag -a v1.0.0 -m "Release User Login feature"
+git push origin v1.0.0</code></pre></div>
                 </div>
             </div>
         </section>
@@ -191,15 +193,15 @@ git commit -m "feat(auth): Add user login form"</code></pre></div>
             <div class="max-w-7xl mx-auto text-center">
                 <h2 class="section-title mb-4 animated slide-up">Quy Trình CI/CD</h2>
                 <p class="text-lg mb-2 animated slide-up" style="animation-delay: 0.2s;">Nguyên tắc: <span class="accent-text font-semibold">Build Once, Deploy Many</span></p>
-                <p class="max-w-3xl mx-auto mb-12 animated slide-up" style="animation-delay: 0.4s;">Xây dựng artifact một lần duy nhất và "thăng cấp" (promote) nó qua các môi trường. Nhấn nút để xem mô phỏng.</p>
+                <p class="max-w-3xl mx-auto mb-12 animated slide-up" style="animation-delay: 0.4s;">Xây dựng artifact một lần duy nhất và "thăng cấp" (promote) nó qua các môi trường. Việc deploy Production được kiểm soát chặt chẽ.</p>
 
                 <div id="pipeline-container" class="relative p-8 rounded-lg pipeline-bg border border-slate-800">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
                         <!-- Stages -->
                         <div id="build-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between"><h3 class="text-lg font-bold">1. BUILD</h3><p class="text-sm stage-description">Tạo ra một artifact (vd: Docker image) có thể deploy.</p></div>
-                        <div id="preprod-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between"><div class="pipeline-arrow left-[-15%] hidden md:block"></div><h3 class="text-lg font-bold">2. PREPROD</h3><p class="text-sm stage-description">Deploy tự động cho Dev kiểm thử tích hợp.</p><div id="preprod-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-indigo-500/10 border border-indigo-500 text-indigo-300 text-xs px-2 py-1 rounded-md inline-block">Config: Dev</div></div></div>
-                        <div id="staging-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between"><div class="pipeline-arrow left-[-15%] hidden md:block"></div><h3 class="text-lg font-bold">3. STAGING</h3><p class="text-sm stage-description">Deploy cho QA kiểm thử trên môi trường giống production.</p><div id="staging-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-amber-500/10 border border-amber-500 text-amber-300 text-xs px-2 py-1 rounded-md inline-block">Config: Staging</div></div></div>
-                        <div id="prod-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between"><div class="pipeline-arrow left-[-15%] hidden md:block"></div><h3 class="text-lg font-bold">4. PRODUCTION</h3><p class="text-sm stage-description">Deploy cho người dùng cuối sau khi được phê duyệt.</p><div id="prod-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-green-500/10 border border-green-500 text-green-300 text-xs px-2 py-1 rounded-md inline-block">Config: Production</div></div></div>
+                        <div id="preprod-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between"><div class="pipeline-arrow left-[-15%] hidden md:block"></div><h3 class="text-lg font-bold">2. STAGING</h3><p class="text-sm stage-description">Deploy tự động cho QA/QC kiểm thử tích hợp.</p><div id="preprod-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-indigo-500/10 border border-indigo-500 text-indigo-300 text-xs px-2 py-1 rounded-md inline-block">Config: Staging</div></div></div>
+                        <div id="staging-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between"><div class="pipeline-arrow left-[-15%] hidden md:block"></div><h3 class="text-lg font-bold">3. APPROVAL</h3><p class="text-sm stage-description">Chờ phê duyệt và tạo Git Tag để deploy Production.</p><div id="staging-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-amber-500/10 border border-amber-500 text-amber-300 text-xs px-2 py-1 rounded-md inline-block">Action: Create Tag</div></div></div>
+                        <div id="prod-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between"><div class="pipeline-arrow left-[-15%] hidden md:block"></div><h3 class="text-lg font-bold">4. PRODUCTION</h3><p class="text-sm stage-description">Deploy cho người dùng cuối sau khi có Git Tag mới.</p><div id="prod-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-green-500/10 border border-green-500 text-green-300 text-xs px-2 py-1 rounded-md inline-block">Config: Production</div></div></div>
                     </div>
                     <div id="artifact" class="left-1/6 top-1/2 -translate-y-1/2">
                          <div class="w-16 h-16 bg-sky-500/20 border-2 border-sky-400 rounded-lg flex items-center justify-center shadow-lg shadow-sky-500/20 flex-col text-center">
@@ -211,7 +213,7 @@ git commit -m "feat(auth): Add user login form"</code></pre></div>
                 <div id="buttons-container" class="mt-8 flex justify-center items-center gap-4 h-12">
                     <button id="start-btn" class="deploy-btn active font-semibold py-2 px-6 rounded-lg text-base">Bắt đầu Build</button>
                     <button id="preprod-btn" class="deploy-btn hidden font-semibold py-2 px-6 rounded-lg text-base">Deploy to Staging</button>
-                    <button id="staging-btn" class="deploy-btn hidden font-semibold py-2 px-6 rounded-lg text-base">Deploy to Production</button>
+                    <button id="staging-btn" class="deploy-btn hidden font-semibold py-2 px-6 rounded-lg text-base">Approve & Tag for Prod</button>
                     <button id="reset-btn" class="deploy-btn hidden font-semibold py-2 px-6 rounded-lg text-base">Làm lại</button>
                 </div>
             </div>
@@ -239,14 +241,6 @@ git commit -m "feat(auth): Add user login form"</code></pre></div>
                     </div>
                      <!-- Environments -->
                     <div class="lg:col-span-1 space-y-6">
-                        <div class="card p-4 rounded-lg animated slide-up" style="animation-delay: 0.4s;">
-                            <h4 class="font-bold text-indigo-300">PREPROD Environment</h4>
-                            <pre><code class="text-xs block text-indigo-300/80"># .env.preprod
-DATABASE_URL=postgres://.../db_preprod
-API_KEY=dev_key_...
-NODE_ENV=development
-</code></pre>
-                        </div>
                          <div class="card p-4 rounded-lg animated slide-up" style="animation-delay: 0.6s;">
                             <h4 class="font-bold text-amber-300">STAGING Environment</h4>
                             <pre><code class="text-xs block text-amber-300/80"># .env.staging
@@ -273,7 +267,7 @@ NODE_ENV=production
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-16">
                     <h2 class="section-title mb-4 animated slide-up">Mô Phỏng Giao Diện GitHub Actions</h2>
-                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Trực quan hóa một pipeline CI/CD 4 bước từ code đến production.</p>
+                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Trực quan hóa một pipeline CI/CD với bước deploy production được kích hoạt bằng tay hoặc bằng Git Tag.</p>
                 </div>
 
                 <div class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden animated slide-up">
@@ -281,9 +275,9 @@ NODE_ENV=production
                         <h3 class="text-lg font-bold flex items-center">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
                            Deploy to Production
-                           <span class="ml-2 text-xs bg-slate-700 text-slate-300 font-mono px-2 py-1 rounded-md">#e4f5g6h</span>
+                           <span class="ml-2 text-xs bg-green-500 text-white font-mono px-2 py-1 rounded-full">v1.2.3</span>
                         </h3>
-                        <p class="text-sm text-slate-400 mt-1">Triggered by push to `main` by <span class="font-semibold text-sky-400">dev_user</span></p>
+                        <p class="text-sm text-slate-400 mt-1">Triggered by tag <code class="text-green-400">v1.2.3</code> pushed by <span class="font-semibold text-sky-400">release_manager</span></p>
                     </div>
                     <div class="flex flex-col md:flex-row">
                         <!-- Left: Jobs List -->
@@ -291,7 +285,6 @@ NODE_ENV=production
                             <h4 class="font-bold mb-2">Jobs</h4>
                             <div class="space-y-1">
                                 <div class="job-item flex items-center p-2 rounded-md bg-slate-800"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-semibold text-white">build</span></div>
-                                <div class="job-item flex items-center p-2 rounded-md bg-slate-800"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-semibold text-white">deploy-preprod</span></div>
                                 <div class="job-item flex items-center p-2 rounded-md bg-slate-800"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-semibold text-white">deploy-staging</span></div>
                                 <div class="job-item flex items-center p-2 rounded-md bg-sky-800/50 border border-sky-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-sky-400 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h5" /><path stroke-linecap="round" stroke-linejoin="round" d="M4 11a8 8 0 108-8" /></svg><span class="font-semibold text-white">deploy-production</span></div>
                             </div>
@@ -302,7 +295,8 @@ NODE_ENV=production
                             <div class="bg-black rounded-lg p-4 font-mono text-sm">
                                 <div class="step-log active">
                                     <div class="flex items-center text-green-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span>Job setup</span></div>
-                                    <div class="flex items-center text-yellow-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" /></svg><span>Waiting for approval from `product-owner`</span></div>
+                                    <div class="flex items-center text-green-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span>Checkout code at tag v1.2.3</span></div>
+                                    <div class="flex items-center text-green-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span>Run production deployment script...</span></div>
                                     <div class="text-gray-500"><span>></span><span class="animate-pulse">_</span></div>
                                 </div>
                             </div>
@@ -311,60 +305,39 @@ NODE_ENV=production
                 </div>
             </div>
         </section>
-
-        <!-- Bug Handling Section -->
-        <section id="bug-handling" class="py-20 px-4 bg-slate-900/50">
+        
+        <!-- NEW SECTION START -->
+        <section id="bug-handling" class="py-20 px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
-                    <h2 class="section-title mb-4 animated slide-up">Quy Trình Xử Lý Lỗi</h2>
-                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Các kịch bản xử lý bug thường gặp trong quá trình phát triển.</p>
+                    <h2 class="section-title mb-4 animated slide-up">Quy Trình Xử Lý Sự Cố & Release</h2>
+                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Các kịch bản xử lý bug và release thường gặp trong quy trình nâng cao.</p>
                 </div>
 
-                <!-- Scenario 1: Bug found on Staging -->
+                <!-- Scenario: Bug found on Staging -->
                 <div class="mb-16">
-                    <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-amber-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 3.01-1.742 3.01H4.42c-1.53 0-2.493-1.676-1.743-3.01l5.58-9.92zM10 13a1 1 0 110-2 1 1 0 010 2zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>Kịch bản 1: QA/QC tìm thấy Bug trên Staging</h3>
-                    <div class="relative timeline-container">
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Tạo Bug Ticket</h4><p>Tester tạo một bug ticket chi tiết trên hệ thống (Jira, Trello...) với các bước tái hiện, kết quả mong đợi và kết quả thực tế.</p></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Tạo Bugfix Branch</h4><p class="mb-4">Developer tạo một branch mới từ `main` để sửa lỗi. Tên branch nên có chứa ID của ticket để dễ dàng truy vết.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout -b bugfix/TICKET-123-fix-payment-bug</code></pre></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. Sửa Lỗi và Mở PR</h4><p class="mb-4">Sau khi sửa lỗi, developer mở một PR mới. Quy trình tiếp tục như một `feature` bình thường: review, merge, và deploy lại lên các môi trường.</p></div>
-                    </div>
-                </div>
-
-                 <!-- Scenario 2: Re-opened Bug -->
-                 <div class="mb-16">
-                    <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-orange-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 110 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" /></svg>Kịch bản 2: Bug bị Re-open</h4>
-                    <div class="relative timeline-container">
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. QA/QC Re-open Ticket</h4><p>Tester chuyển trạng thái ticket về "In Progress" và cung cấp thêm thông tin về trường hợp lỗi vẫn còn tồn tại.</p></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Dev tiếp tục trên Branch cũ</h4><p class="mb-4"><strong class="highlight-text">Quan trọng:</strong> Dev KHÔNG tạo branch mới. Họ checkout lại `bugfix` branch đã tồn tại và tiếp tục công việc.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout bugfix/TICKET-123-fix-payment-bug</code></pre></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. Thêm Commit mới và Push</h4><p class="mb-4">Sau khi sửa xong, dev tạo commit mới và push lên. Hành động này sẽ tự động cập nhật Pull Request đã mở trước đó.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git commit -m "fix: Handle edge case for zero amount"
-git push</code></pre></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Lặp lại vòng xác nhận</h4><p>CI/CD deploy lại lên Staging, và QA/QC vào xác nhận. Vòng lặp tiếp tục cho đến khi bug được sửa hoàn toàn.</p></div>
-                    </div>
-                </div>
-
-                <!-- Scenario 3: Bug found after merge -->
-                <div>
-                    <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.748 2 6.492 2 7.292c0 1.257.11 2.478.324 3.65.234 1.282.66 2.493 1.255 3.615.602 1.133 1.39 2.16 2.324 3.053.942.903 2.01 1.66 3.168 2.277.537.29 1.1.528 1.69.708.577.173 1.17.258 1.78.258s1.203-.085 1.78-.258c.59-.18 1.153-.418 1.69-.708 1.158-.617 2.226-1.374 3.168-2.277.934-.893 1.722-1.92 2.324-3.053.595-1.122 1.02-2.333 1.255-3.615.214-1.172.324-2.393.324-3.65 0-.799-.056-1.544-.166-2.292A11.954 11.954 0 0110 1.944zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" /></svg>Kịch bản 3: Bug được phát hiện trên Preprod (Sau khi đã merge vào `main`)</h3>
+                    <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.748 2 6.492 2 7.292c0 1.257.11 2.478.324 3.65.234 1.282.66 2.493 1.255 3.615.602 1.133 1.39 2.16 2.324 3.053.942.903 2.01 1.66 3.168 2.277.537.29 1.1.528 1.69.708.577.173 1.17.258 1.78.258s1.203-.085 1.78-.258c.59-.18 1.153-.418 1.69-.708 1.158-.617 2.226-1.374 3.168-2.277.934-.893 1.722-1.92 2.324-3.053.595-1.122 1.02-2.333 1.255-3.615.214-1.172.324-2.393.324-3.65 0-.799-.056-1.544-.166-2.292A11.954 11.954 0 0110 1.944zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" /></svg>Kịch bản: "Ôm code lỗi" khi release</h3>
                     <div class="mt-4 mb-6 text-sm bg-red-900/50 p-3 rounded-md border-l-4 border-red-500">
-                        <p><strong class="text-red-400">Nguyên nhân xảy ra:</strong> Kịch bản này là "thất bại" của các lớp phòng thủ trước đó. Nó xảy ra khi:</p>
+                        <p><strong class="text-red-400">Tình huống:</strong> Dev1 merge `feat-1` vào `main`, deploy lên Staging thì QA phát hiện bug. Cùng lúc đó, `feat-2` của Dev2 đã được test kỹ và sẵn sàng để release. Làm thế nào để release `feat-2` mà không "dính" phải code lỗi của `feat-1`?</p>
                         <ul class="list-disc pl-5 mt-2 space-y-1">
-                            <li><strong>Lỗi Tích Hợp (Integration Bug):</strong> Tính năng hoạt động tốt khi test riêng lẻ nhưng xung đột với code khác trên `main`.</li>
-                            <li><strong>Thiếu Test Case:</strong> Các bài test tự động (CI) chưa bao phủ hết các trường hợp sử dụng.</li>
-                            <li><strong>Lỗ hổng trong Code Review:</strong> Một lỗi logic bị bỏ sót trong quá trình review.</li>
+                            <li><strong class="highlight-text">Vấn đề:</strong> `main` branch hiện đang không ổn định. Không thể tạo tag release từ `main` lúc này.</li>
                         </ul>
                     </div>
                     <div class="relative timeline-container">
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Dừng Pipeline & Hoàn tác PR</h4><p class="mb-4"><strong class="highlight-text">Hành động khẩn cấp:</strong> Ngăn chặn pipeline deploy phiên bản lỗi lên các môi trường tiếp theo. Ngay lập tức, sử dụng tính năng "Revert" trên GitHub/GitLab để hoàn tác Pull Request đã merge. Hành động này sẽ tạo một PR mới, tự động chứa commit `revert`.</p></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Merge PR Hoàn tác</h4><p class="mb-4">Nhanh chóng duyệt và merge PR hoàn tác này vào `main`. Hành động này sẽ đưa `main` trở lại trạng thái ổn định trước đó và CI/CD sẽ deploy lại phiên bản tốt này lên Preprod.</p></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. Dev Sửa lỗi trên Branch Cũ</h4><p class="mb-4">Developer quay lại `feature` branch ban đầu. Trước khi sửa, họ cần lấy commit `revert` từ `main` về branch của mình. Điều này có thể gây ra conflict, và dev cần giải quyết nó.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout feature/user-login
-git pull origin main</code></pre></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Mở một PR Hoàn toàn Mới</h4><p class="mb-4">Sau khi đã sửa lỗi triệt để trên branch của mình, developer mở một **Pull Request mới**. PR này sẽ chứa cả code tính năng ban đầu và code sửa lỗi.</p></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">5. Review Kỹ Lưỡng</h4><p class="mb-4">PR mới này cần được review cẩn thận hơn, đặc biệt là bởi QA/QC, trước khi được phép merge vào `main` một lần nữa.</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Hoàn tác (Revert) Pull Request lỗi</h4><p class="mb-4"><strong class="highlight-text">Hành động khẩn cấp:</strong> Người có thẩm quyền (Tech Lead) sẽ sử dụng tính năng "Revert" trên GitHub/GitLab để hoàn tác PR của `feat-1`. Thao tác này sẽ tạo ra một PR mới, chứa một commit `revert` để loại bỏ các thay đổi của `feat-1` khỏi `main`.</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Merge PR Hoàn tác</h4><p class="mb-4">Nhanh chóng duyệt và merge PR hoàn tác này vào `main`. Hành động này sẽ đưa `main` trở lại trạng thái ổn định trước khi `feat-1` được merge. CI/CD sẽ deploy lại phiên bản sạch này lên Staging.</p><p>Lúc này `main` chỉ chứa code của `feat-2` và các tính năng ổn định trước đó.</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. Tag và Release `feat-2`</h4><p class="mb-4">Bây giờ `main` đã an toàn. Người có thẩm quyền tạo Git Tag trên commit mới nhất của `main` để release `feat-2`.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git tag -a v2.1.0 -m "Release feature 2"
+git push origin v2.1.0</code></pre></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Dev1 Sửa lỗi trên Branch của mình</h4><p class="mb-4">Dev1 quay lại `feature/feat-1` branch. Trước khi sửa lỗi, họ cần kéo commit `revert` từ `main` về branch của mình. Sau đó, họ sửa lỗi, và mở lại một PR mới để `feat-1` được review và merge lại vào `main` khi đã sẵn sàng.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout feature/feat-1
+git pull origin main # Lấy commit revert về
+# ...Sửa lỗi...
+git commit -m "fix(feat-1): Fix bug and re-apply changes"
+git push</code></pre></div>
                     </div>
                 </div>
-
             </div>
         </section>
+        <!-- NEW SECTION END -->
 
         <!-- Hotfix & Revert Section -->
         <section id="hotfix-revert" class="py-20 px-4 bg-slate-900/50">
@@ -378,14 +351,13 @@ git pull origin main</code></pre></div>
                     <div>
                         <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>Quy Trình Hotfix</h3>
                          <div class="relative timeline-container">
-                             <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Tạo Hotfix Branch từ `main`</h4><p class="mb-4">Khi có lỗi nghiêm trọng, tạo branch `hotfix/*` trực tiếp từ `main` để đảm bảo bản vá dựa trên code production.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout main; git pull
-git checkout -b hotfix/fix-login-bug</code></pre></div>
-                             <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Sửa lỗi và Commit</h4><p class="mb-4">Sửa lỗi nhanh chóng, commit và push lên server.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git commit -m "hotfix: Fix critical login bug"
-git push origin hotfix/fix-login-bug</code></pre></div>
-                              <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. Merge vào `main` và Tag</h4><p class="mb-4">Mở PR, review nhanh và merge vào `main`. Ngay sau đó tạo một tag phiên bản vá lỗi (ví dụ: <code class="commit-hash">v1.0.1</code>).</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout main; git merge hotfix/fix-login-bug
-git tag -a <span class="text-yellow-300">v1.0.1</span> -m "Version 1.0.1"
+                             <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Tạo Hotfix Branch từ Tag Lỗi</h4><p class="mb-4">Khi có lỗi nghiêm trọng trên Production, checkout code từ chính <strong class="highlight-text">Git Tag</strong> của phiên bản đang bị lỗi (ví dụ: `v1.2.3`) để tạo branch `hotfix/*`.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout -b hotfix/fix-critical-bug v1.2.3</code></pre></div>
+                             <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Sửa lỗi và Commit</h4><p class="mb-4">Sửa lỗi nhanh chóng, commit và mở PR vào `main`.</p></div>
+                              <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. Merge vào `main` và Tag Phiên Bản Vá</h4><p class="mb-4">Sau khi PR được review và merge vào `main`, ngay lập tức tạo một tag phiên bản vá lỗi (ví dụ: `v1.2.4`).</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout main
+git pull
+git tag -a <span class="text-yellow-300">v1.2.4</span> -m "Hotfix for critical bug"
 git push origin main --tags</code></pre></div>
-                               <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Deploy khẩn cấp</h4><p class="mb-4">Hệ thống CI/CD sẽ tự động nhận diện tag mới và deploy phiên bản đã vá lỗi ra Production.</p></div>
+                               <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Deploy khẩn cấp</h4><p class="mb-4">CI/CD sẽ nhận diện tag `v1.2.4` mới và deploy phiên bản đã vá lỗi ra Production.</p></div>
                          </div>
                     </div>
                     <div>
@@ -393,16 +365,16 @@ git push origin main --tags</code></pre></div>
                         <p class="mb-6 text-sm bg-sky-900/50 p-3 rounded-md border-l-4 border-sky-400"><strong class="highlight-text">Khi nào dùng?</strong> Khi một phiên bản vừa deploy gây ra lỗi hệ thống nghiêm trọng và cần quay lại phiên bản ổn định <strong class="highlight-text">ngay lập tức</strong> một cách an toàn.</p>
                          <div class="relative timeline-container">
                              <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Xác định Commit Lỗi</h4><p class="mb-4">Giả sử `git log` cho thấy lịch sử gần đây của `main`:</p><pre><code class="bg-slate-800 p-3 rounded-md text-slate-400 text-sm block">$ git log --oneline -n 3
-<code class="commit-hash" style="color:#f87171; background-color: #450a0a;">e4f5g6h</code> (HEAD -> main) feat(api): Add new payment endpoint
+<code class="commit-hash" style="color:#f87171; background-color: #450a0a;">e4f5g6h</code> (HEAD -> main, tag: v2.0.0) feat(api): Add new payment endpoint
 <code class="commit-hash">a1b2c3d</code> fix(ui): Correct button alignment
 <code class="commit-hash">c7d8e9f</code> docs: Update README</code></pre><p>Ta xác định commit <code class="commit-hash" style="color:#f87171; background-color: #450a0a;">e4f5g6h</code> là nguyên nhân gây lỗi.</p></div>
                              <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Tạo Commit Hoàn Tác</h4><p class="mb-4">Chạy lệnh `git revert` với mã hash của commit lỗi. Lệnh này không xóa lịch sử, mà tạo một commit mới an toàn.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git revert e4f5g6h</code></pre></div>
-                              <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. Xác nhận Lịch sử Mới</h4><p class="mb-4">Lịch sử `git log` giờ đã có một commit `Revert` ở trên cùng.</p><pre><code class="bg-slate-800 p-3 rounded-md text-slate-400 text-sm block">$ git log --oneline -n 4
+                              <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. Tag Phiên Bản Rollback</h4><p class="mb-4">Commit `Revert` mới đã được tạo trên `main`. Để deploy phiên bản an toàn này, ta tạo một Tag mới.</p><pre><code class="bg-slate-800 p-3 rounded-md text-slate-400 text-sm block">$ git log --oneline -n 2
 <code class="commit-hash" style="color:#4ade80; background-color: #14532d;">b8a9d1c</code> (HEAD -> main) Revert "feat(api): Add new payment endpoint"
-<code class="commit-hash">e4f5g6h</code> feat(api): Add new payment endpoint
-<code class="commit-hash">a1b2c3d</code> fix(ui): Correct button alignment
-<code class="commit-hash">c7d8e9f</code> docs: Update README</code></pre></div>
-                               <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Đẩy lên `main`</h4><p class="mb-4">Đẩy commit hoàn tác lên server. CI/CD sẽ tự động deploy phiên bản ổn định này ra Production.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git push origin main</code></pre></div>
+<code class="commit-hash">e4f5g6h</code> (tag: v2.0.0) feat(api): Add new payment endpoint
+...</code></pre><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git tag -a v2.0.1 -m "Rollback payment endpoint feature"
+git push origin main --tags</code></pre></div>
+                               <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Deploy phiên bản Rollback</h4><p class="mb-4">CI/CD sẽ nhận diện tag `v2.0.1` và deploy phiên bản ổn định này ra Production.</p></div>
                          </div>
                     </div>
                 </div>
@@ -478,9 +450,9 @@ git push origin main --tags</code></pre></div>
 
                 artifactTag.textContent = '';
                 buildStageDesc.innerHTML = 'Tạo ra một artifact (vd: Docker image) có thể deploy.';
-                preprodStageDesc.innerHTML = 'Deploy tự động cho Dev kiểm thử tích hợp.';
-                stagingStageDesc.innerHTML = 'Deploy cho QA kiểm thử trên môi trường giống production.';
-                prodStageDesc.innerHTML = 'Deploy cho người dùng cuối sau khi được phê duyệt.';
+                preprodStageDesc.innerHTML = 'Deploy tự động cho QA/QC kiểm thử tích hợp.';
+                stagingStageDesc.innerHTML = 'Chờ phê duyệt và tạo Git Tag để deploy Production.';
+                prodStageDesc.innerHTML = 'Deploy cho người dùng cuối sau khi có Git Tag mới.';
 
 
                 setTimeout(() => { 
@@ -525,7 +497,7 @@ git push origin main --tags</code></pre></div>
                     artifact.style.left = `${getTargetX(stagingStageEl)}px`;
                     setTimeout(() => {
                         if(stagingConfig) stagingConfig.classList.add('show');
-                        stagingStageDesc.innerHTML = `Đang deploy artifact <code class="commit-hash">${currentTag}</code>...`;
+                        stagingStageDesc.innerHTML = `Artifact <code class="commit-hash">${currentTag}</code> đã được QA test OK. Sẵn sàng tạo tag!`;
                         preprodBtn.classList.add('hidden');
                         stagingBtn.classList.remove('hidden');
                         stagingBtn.disabled = false;
@@ -541,15 +513,16 @@ git push origin main --tags</code></pre></div>
                     stagingBtn.disabled = true;
                     stagingBtn.classList.remove('active');
                     if(stagingConfig) stagingConfig.classList.remove('show');
+                    stagingStageDesc.innerHTML = `Đã tạo tag <code class="commit-hash">v1.3.0</code> cho artifact <code class="commit-hash">${currentTag}</code>`;
                     artifact.style.left = `${getTargetX(prodStageEl)}px`;
                     setTimeout(() => {
                         if(prodConfig) prodConfig.classList.add('show');
-                        prodStageDesc.innerHTML = `Đã deploy artifact <code class="commit-hash">${currentTag}</code>!`;
+                        prodStageDesc.innerHTML = `Đã deploy thành công phiên bản <code class="commit-hash">v1.3.0</code>!`;
                         stagingBtn.classList.add('hidden');
                         resetBtn.classList.remove('hidden');
                         resetBtn.disabled = false;
                         resetBtn.classList.add('active');
-                        currentState = 'in_prod';
+currentState = 'in_prod';
                     }, 1500);
                 }
             });
