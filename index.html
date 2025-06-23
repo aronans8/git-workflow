@@ -159,31 +159,128 @@
                     <div class="card p-6 rounded-lg animated slide-up" style="animation-delay: 0.8s;">
                         <div class="mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
                         <h3 class="text-xl font-bold mb-2">Release bằng Git Tag</h3>
-                        <p>Việc deploy lên Production được quyết định bằng cách tạo Git Tag trên một commit đã được kiểm thử kỹ lưỡng trên `main`.</p>
+                        <p>Việc deploy lên Production được quyết định bằng cách tạo Git Tag trên một commit đã được kiểm thử kỹ lưỡng.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Static Workflow Section -->
-        <section id="workflow" class="py-20 px-4">
+        <!-- NEW SECTION: Branching Strategy -->
+        <section id="branching-strategy" class="py-20 px-4">
             <div class="max-w-4xl mx-auto">
-                 <div class="text-center mb-16">
-                    <h2 class="section-title mb-4 animated slide-up">Quy Trình Phát Triển Tính Năng</h2>
-                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Mô hình GitHub Flow tiêu chuẩn dành cho các team phát triển phần mềm hiện đại.</p>
-                 </div>
+                <div class="text-center mb-16">
+                    <h2 class="section-title mb-4 animated slide-up">Chiến Lược Phân Nhánh (Branching Strategy)</h2>
+                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">
+                        Quy trình này chỉ cần <strong class="highlight-text">một (1)</strong> branch tồn tại vĩnh viễn, giúp kho code luôn gọn gàng và dễ quản lý.
+                    </p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-lg p-8">
+                    <h3 class="text-2xl font-bold mb-4 text-center">Mô Hình Branch</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-xl font-bold text-green-400">1. Branch Vĩnh Viễn: `main`</h4>
+                            <p>Đây là branch trung tâm, là (source of truth). `main` luôn phản ánh phiên bản code mới nhất đang được tích hợp và chạy trên môi trường Staging.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-sky-400">2. Các Branch Tạm Thời (Temporary Branches)</h4>
+                            <p class="mb-4">Tất cả các branch khác đều có vòng đời ngắn, được tạo ra để thực hiện một nhiệm vụ cụ thể và <strong class="highlight-text">phải được xóa đi</strong> sau khi đã merge vào `main`.</p>
+                            <ul class="list-disc pl-5 space-y-3">
+                                <li><strong>`feature/*`</strong> (ví dụ: `feature/TASK-123-new-login`): Dùng để phát triển các tính năng mới. Mỗi task sẽ có một feature branch riêng.</li>
+                                <li><strong>`bugfix/*`</strong> (ví dụ: `bugfix/TASK-456-fix-button`): Dùng để sửa các lỗi được phát hiện trên Staging trong quá trình phát triển thông thường.</li>
+                                <li><strong>`hotfix/*`</strong> (ví dụ: `hotfix/fix-prod-crash`): <strong class="text-red-400">Chỉ dùng cho trường hợp khẩn cấp</strong> để sửa lỗi nghiêm trọng trên Production. Branch này được tạo từ Git Tag của phiên bản lỗi.</li>
+                                <li><strong>`release/*`</strong> (ví dụ: `release/v1.5.1-hotfix`): <strong class="text-cyan-400">Chỉ dùng trong các kịch bản đặc biệt</strong>, ví dụ như khi cần release "nóng" một tính năng bằng cherry-pick.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UPDATED: Static Workflow Section for Teams -->
+        <section id="workflow" class="py-20 px-4 bg-slate-900/50">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="section-title mb-4 animated slide-up">Quy Trình Phát Triển Tính Năng Cho Team Lớn</h2>
+                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">
+                        Mô hình làm việc song song cho 10 (hay 100) lập trình viên, đảm bảo sự đồng bộ và giảm thiểu xung đột.
+                    </p>
+                </div>
 
                 <div class="relative timeline-container">
-                    <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" /></svg>1. Tạo Feature Branch</h3><p class="mb-4">Luôn bắt đầu công việc từ phiên bản mới nhất của `main`.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout main
-git pull
-git checkout -b feature/user-login</code></pre></div>
-                    <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" /></svg>2. Commit Các Thay Đổi</h3><p class="mb-4">Làm việc trên branch và commit các thay đổi một cách logic và thường xuyên.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git add .
-git commit -m "feat(auth): Add user login form"</code></pre></div>
-                    <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>3. Mở Pull Request</h3><p class="mb-4">Khi sẵn sàng, đẩy branch của bạn lên và mở một Pull Request để team review. Mô tả rõ những gì bạn đã làm.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git push origin feature/user-login</code></pre></div>
-                    <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" /><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" /></svg>4. Review, Thảo Luận và Chạy CI</h3><p class="mb-4">Team sẽ review code, CI sẽ chạy tests. Sau khi được duyệt, code sẽ được merge vào `main` và deploy lên Staging.</p></div>
-                    <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>5. Kiểm thử trên Staging và Release</h3><p class="mb-4">QA/QC kiểm thử tính năng trên môi trường Staging. Nếu mọi thứ ổn định, một người có thẩm quyền sẽ tạo Git Tag trên commit tương ứng của `main` để deploy lên Production.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block"># Tag a commit on main to trigger production deploy
-git tag -a v1.0.0 -m "Release User Login feature"
-git push origin v1.0.0</code></pre></div>
+                    <div class="timeline-item animated slide-up">
+                        <div class="timeline-dot"></div>
+                        <h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" /></svg>0. Phân Rã & Nhận Task</h3>
+                        <p class="mb-4">Một tính năng lớn (Epic) sẽ được Tech Lead/Product Manager phân rã thành các task nhỏ hơn trên công cụ quản lý (Jira, Trello...). Mỗi lập trình viên sẽ nhận một task cụ thể, ví dụ: <code class="commit-hash">FEAT-123</code>: Xây dựng Form Đăng nhập, <code class="commit-hash">FEAT-124</code>: Tích hợp API Google Login.</p>
+                    </div>
+                    <div class="timeline-item animated slide-up">
+                        <div class="timeline-dot"></div>
+                        <h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" /></svg>1. Tạo Feature Branch Từ `main`</h3>
+                        <p class="mb-4">Mỗi dev <strong class="highlight-text">luôn</strong> tạo branch mới từ phiên bản code mới nhất và ổn định nhất của `main`. Đặt tên branch rõ ràng theo convention <code class="text-sky-300">{type}/{ticket-id}-{description}</code>.</p>
+                        <pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block"># Dev A làm task FEAT-123
+git checkout main
+git pull origin main
+git checkout -b feature/FEAT-123-login-form
+
+# Dev B làm task FEAT-124
+git checkout main
+git pull origin main
+git checkout -b feature/FEAT-124-google-login</code></pre>
+                    </div>
+                    <div class="timeline-item animated slide-up">
+                        <div class="timeline-dot"></div>
+                        <h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 13.5A1.5 1.5 0 014 12V6a1.5 1.5 0 013 0v6a1.5 1.5 0 01-1.5 1.5zM12.5 13.5A1.5 1.5 0 0111 12V6a1.5 1.5 0 013 0v6a1.5 1.5 0 01-1.5 1.5zM20 12a1.5 1.5 0 01-1.5-1.5V6a1.5 1.5 0 00-3 0v6a1.5 1.5 0 01-1.5 1.5h-1a1.5 1.5 0 01-1.5-1.5V6a1.5 1.5 0 00-3 0v6a1.5 1.5 0 01-1.5 1.5H8a1.5 1.5 0 01-1.5-1.5V6a1.5 1.5 0 00-3 0v6a1.5 1.5 0 01-1.5 1.5H1" /></svg>2. Lập Trình và Đồng Bộ Hóa Thường Xuyên</h3>
+                        <p class="mb-4">Trong quá trình code, các dev khác cũng merge code của họ vào `main`. Để tránh "xa rời thực tế" và giảm thiểu conflict sau này, mỗi dev cần đồng bộ hóa branch của mình với `main` <strong class="highlight-text">hàng ngày</strong>.</p>
+                        <pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block"># Đang ở trên branch feature/FEAT-123-login-form
+git pull origin main</code></pre>
+                        <p class="mt-2 text-sm">Thao tác này sẽ gộp những thay đổi mới nhất từ `main` vào branch của bạn, giúp bạn xử lý các conflict nhỏ ngay lập tức.</p>
+                    </div>
+                    <div class="timeline-item animated slide-up">
+                        <div class="timeline-dot"></div>
+                        <h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>3. Mở Pull Request (PR) "Sớm và Nhỏ"</h3>
+                        <p class="mb-4">Ngay khi hoàn thành một phần logic nhỏ và có thể chạy được (dù chưa hoàn thiện toàn bộ task), hãy mở một PR. Đặt tiền tố <code class="commit-hash">[WIP]</code> (Work In Progress) vào tiêu đề để team biết nó chưa sẵn sàng để merge.</p>
+                        <ul class="list-disc pl-5 text-sm space-y-1">
+                            <li><strong>Lợi ích:</strong> Team có thể thấy tiến độ của bạn, cho feedback sớm, và CI đã có thể chạy test trên code của bạn.</li>
+                            <li><strong>PR chất lượng:</strong> Mô tả rõ ràng mục đích, liên kết đến ticket Jira, và có hình ảnh/GIF minh họa nếu là thay đổi UI.</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item animated slide-up">
+                        <div class="timeline-dot"></div>
+                        <h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" /><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" /></svg>4. Code Review và Thảo Luận</h3>
+                        <p class="mb-4">Khi PR sẵn sàng (bỏ tiền tố <code class="commit-hash">[WIP]</code>), hãy tag ít nhất 1-2 người vào review. Quá trình review là trao đổi hai chiều để nâng cao chất lượng code chung, không phải để chỉ trích.</p>
+                    </div>
+                    <div class="timeline-item animated slide-up">
+                        <div class="timeline-dot"></div>
+                        <h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>5. Merge vào `main` và Deploy Staging</h3>
+                        <p class="mb-4">Sau khi PR được duyệt và CI báo pass, người duyệt sẽ merge code vào `main` (thường dùng <strong class="highlight-text">Squash and Merge</strong> để giữ lịch sử `main` gọn gàng). CI/CD sẽ tự động deploy code mới nhất lên môi trường Staging.</p>
+                    </div>
+                    <div class="timeline-item animated slide-up">
+                        <div class="timeline-dot"></div>
+                        <h3 class="flex items-center text-xl font-bold mb-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v1H5V4zM5 8h10a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1V9a1 1 0 011-1z" /></svg>6. Quy Trình Release: Từ Staging đến Production</h3>
+                        <p class="mb-4">Đây là bước quan trọng, đòi hỏi sự phối hợp giữa Dev, QA, và Product Manager. <strong class="highlight-text">Không phải mọi commit trên `main` đều sẽ được release.</strong></p>
+                        
+                        <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4 mt-4">
+                            <h4 class="font-bold text-lg text-sky-300 mb-2">Ví dụ về một chu kỳ Release hàng tuần:</h4>
+                            <p class="text-sm mb-4">Giả sử team quyết định release vào thứ Năm hàng tuần. Đến sáng thứ Năm, Tech Lead sẽ xem xét trạng thái của `main`.</p>
+                            <p class="mb-2">Lịch sử commit trên `main` có thể trông như thế này:</p>
+                            <pre><code class="text-xs block text-slate-400 p-3 bg-black rounded-md">
+<code class="commit-hash">c4a5f6</code> (HEAD -> main) feat(FEAT-125): Add user profile page
+<code class="commit-hash">b3d4e5</code> feat(FEAT-124): Integrate Google Login
+<code class="commit-hash">a2c3d4</code> feat(FEAT-123): Add login form
+<code class="commit-hash">f1a2b3</code> (tag: v1.4.0) chore: Update dependencies
+...
+                            </code></pre>
+                            <ul class="list-disc pl-5 text-sm space-y-2 mt-4">
+                                <li><strong>Họp Release:</strong> Team sẽ họp nhanh để xác nhận. QA báo cáo rằng cả 3 feature 123, 124, 125 đều đã được kiểm tra và hoạt động tốt trên Staging.</li>
+                                <li><strong>Quyết định Release:</strong> Tech Lead quyết định rằng commit <code class="commit-hash">c4a5f6</code> đủ điều kiện để release.</li>
+                                <li><strong>Tạo Git Tag (Hành động chính):</strong> Tech Lead sẽ tạo một tag mới ngay tại commit đó. Tag phải tuân theo <a href="https://semver.org/" target="_blank" class="text-sky-400 hover:underline">Semantic Versioning</a>.
+                                    <pre><code class="bg-black p-3 rounded-md text-sky-300 text-sm block mt-2"># Lệnh được thực thi bởi người có thẩm quyền
+git tag -a v1.5.0 c4a5f6 -m "Release: User Profile, Google Login, Login Form"
+git push origin v1.5.0</code></pre>
+                                </li>
+                                <li><strong>Kích hoạt Pipeline Production:</strong> Hệ thống CI/CD được cấu hình để lắng nghe sự kiện push tag. Khi nhận được tag <code class="commit-hash">v1.5.0</code>, pipeline sẽ tự động checkout code tại commit <code class="commit-hash">c4a5f6</code> và deploy nó lên Production.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -218,147 +315,68 @@ git push origin v1.0.0</code></pre></div>
                 </div>
             </div>
         </section>
-
-        <!-- Env Vars Section -->
-        <section id="env-vars" class="py-20 px-4">
-             <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="section-title mb-4 animated slide-up">Quản Lý Cấu Hình Môi Trường</h2>
-                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Cùng một artifact, hoạt động khác nhau ở mỗi môi trường nhờ cấu hình ngoài.</p>
-                </div>
-                <div class="grid lg:grid-cols-3 gap-8 items-center">
-                    <!-- Artifact -->
-                    <div class="flex flex-col items-center animated slide-up">
-                        <div class="w-24 h-24 bg-sky-500/20 border-2 border-sky-400 rounded-lg flex items-center justify-center shadow-lg shadow-sky-500/20 flex-col text-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-sky-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4M4 7v10l8 4M12 11v10" /></svg>
-                        </div>
-                        <h4 class="mt-4 text-lg font-bold">Artifact (Docker Image)</h4>
-                        <p class="text-sm">myapp:<code class="commit-hash">e4f5g6h</code></p>
-                    </div>
-                    <!-- Arrow -->
-                    <div class="text-center text-slate-600 hidden lg:block">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                    </div>
-                     <!-- Environments -->
-                    <div class="lg:col-span-1 space-y-6">
-                         <div class="card p-4 rounded-lg animated slide-up" style="animation-delay: 0.6s;">
-                            <h4 class="font-bold text-amber-300">STAGING Environment</h4>
-                            <pre><code class="text-xs block text-amber-300/80"># .env.staging
-DATABASE_URL=postgres://.../db_staging
-API_KEY=staging_key_...
-NODE_ENV=staging
-</code></pre>
-                        </div>
-                         <div class="card p-4 rounded-lg animated slide-up" style="animation-delay: 0.8s;">
-                            <h4 class="font-bold text-green-300">PRODUCTION Environment</h4>
-                            <pre><code class="text-xs block text-green-300/80"># .env.production
-DATABASE_URL=postgres://.../db_production
-API_KEY=prod_key_...
-NODE_ENV=production
-</code></pre>
-                        </div>
-                    </div>
-                </div>
-             </div>
-        </section>
-
-        <!-- GitHub Actions UI Example Section -->
-        <section id="github-actions" class="py-20 px-4 bg-slate-900/50">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="section-title mb-4 animated slide-up">Mô Phỏng Giao Diện GitHub Actions</h2>
-                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Trực quan hóa một pipeline CI/CD với bước deploy production được kích hoạt bằng tay hoặc bằng Git Tag.</p>
-                </div>
-
-                <div class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden animated slide-up">
-                    <div class="p-4 border-b border-slate-800">
-                        <h3 class="text-lg font-bold flex items-center">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
-                           Deploy to Production
-                           <span class="ml-2 text-xs bg-green-500 text-white font-mono px-2 py-1 rounded-full">v1.2.3</span>
-                        </h3>
-                        <p class="text-sm text-slate-400 mt-1">Triggered by tag <code class="text-green-400">v1.2.3</code> pushed by <span class="font-semibold text-sky-400">release_manager</span></p>
-                    </div>
-                    <div class="flex flex-col md:flex-row">
-                        <!-- Left: Jobs List -->
-                        <div class="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-slate-800 p-4">
-                            <h4 class="font-bold mb-2">Jobs</h4>
-                            <div class="space-y-1">
-                                <div class="job-item flex items-center p-2 rounded-md bg-slate-800"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-semibold text-white">build</span></div>
-                                <div class="job-item flex items-center p-2 rounded-md bg-slate-800"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-semibold text-white">deploy-staging</span></div>
-                                <div class="job-item flex items-center p-2 rounded-md bg-sky-800/50 border border-sky-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-sky-400 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h5" /><path stroke-linecap="round" stroke-linejoin="round" d="M4 11a8 8 0 108-8" /></svg><span class="font-semibold text-white">deploy-production</span></div>
-                            </div>
-                        </div>
-                        <!-- Right: Steps Log -->
-                        <div class="w-full md:w-2/3 p-4">
-                            <h4 class="font-bold mb-2">Logs for `deploy-production`</h4>
-                            <div class="bg-black rounded-lg p-4 font-mono text-sm">
-                                <div class="step-log active">
-                                    <div class="flex items-center text-green-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span>Job setup</span></div>
-                                    <div class="flex items-center text-green-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span>Checkout code at tag v1.2.3</span></div>
-                                    <div class="flex items-center text-green-400"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span>Run production deployment script...</span></div>
-                                    <div class="text-gray-500"><span>></span><span class="animate-pulse">_</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         
         <!-- Bug Handling & Release Section -->
-        <section id="bug-handling" class="py-20 px-4">
-            <div class="max-w-4xl mx-auto">
+        <section id="bug-handling" class="py-20 bg-slate-900/50">
+            <div class="max-w-4xl mx-auto px-4">
                 <div class="text-center mb-16">
-                    <h2 class="section-title mb-4 animated slide-up">Kịch Bản Release và Xử Lý Sự Cố Nâng Cao</h2>
-                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Các kịch bản xử lý bug và release thường gặp trong quy trình nâng cao.</p>
+                    <h2 class="section-title mb-4 animated slide-up">Kịch Bản Release Phức Tạp & Xử Lý Sự Cố</h2>
+                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Cách xử lý khi `main` chứa các feature chưa sẵn sàng để release.</p>
                 </div>
 
                 <!-- Scenario 1: Block release -->
                 <div class="mb-16">
-                    <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.748 2 6.492 2 7.292c0 1.257.11 2.478.324 3.65.234 1.282.66 2.493 1.255 3.615.602 1.133 1.39 2.16 2.324 3.053.942.903 2.01 1.66 3.168 2.277.537.29 1.1.528 1.69.708.577.173 1.17.258 1.78.258s1.203-.085 1.78-.258c.59-.18 1.153-.418 1.69-.708 1.158-.617 2.226-1.374 3.168-2.277.934-.893 1.722-1.92 2.324-3.053.595-1.122 1.02-2.333 1.255-3.615.214-1.172.324-2.393.324-3.65 0-.799-.056-1.544-.166-2.292A11.954 11.954 0 0110 1.944zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" /></svg>Kịch bản 1: Tạm dừng Release để sửa bug trên Staging</h3>
-                    <div class="mt-4 mb-6 text-sm bg-red-900/50 p-3 rounded-md border-l-4 border-red-500">
-                        <p><strong class="text-red-400">Tình huống:</strong> Dev1 merge `feat-1` vào `main`, deploy lên Staging thì QA phát hiện bug. Cùng lúc đó, `feat-2` của Dev2 cũng đã merge vào `main`. Làm thế nào để release cả hai khi `feat-1` được sửa xong?</p>
-                        <ul class="list-disc pl-5 mt-2 space-y-1">
-                            <li><strong class="highlight-text">Hành động:</strong> Toàn bộ việc release sẽ bị tạm dừng. Không ai được tạo tag release cho đến khi bug của `feat-1` được sửa.</li>
-                        </ul>
+                    <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>Kịch bản 1 (Phổ biến): Tạm Dừng Release ("Release Train")</h3>
+                    <div class="mt-4 mb-6 text-sm bg-red-900/50 p-4 rounded-lg border-l-4 border-red-500">
+                        <p><strong class="text-red-400">Tình huống:</strong> `main` chứa 3 feature mới (A, B, C). QA kiểm tra trên Staging và phát hiện `feat-B` có bug nghiêm trọng. `feat-A` và `feat-C` đã ổn.</p>
+                        <p class="mt-2"><strong class="highlight-text">Giải pháp:</strong> "Chuyến tàu release" sẽ dừng lại. Không ai được phép deploy cho đến khi `feat-B` được sửa. Đây là giải pháp ưu tiên vì nó đảm bảo chất lượng và sự ổn định của `main`.</p>
                     </div>
                     <div class="relative timeline-container">
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Dev1 tạo branch `bugfix/*` từ `feature/feat-1`</h4><p class="mb-4">Dev1 tạo branch mới để sửa lỗi, sau đó tạo PR để merge bản vá vào `main`.</p></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Merge bản vá vào `main`</h4><p class="mb-4">Sau khi PR sửa lỗi được duyệt, nó sẽ được merge vào `main`. CI/CD tự động deploy phiên bản mới nhất của `main` (đã chứa `feat-1` đã sửa, và `feat-2`) lên Staging.</p></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. QA kiểm tra lại Staging</h4><p class="mb-4">QA/QC xác nhận lại toàn bộ các tính năng trên Staging. Nếu mọi thứ ổn định, team sẽ quyết định đi đến bước tiếp theo.</p></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Tag và Release</h4><p class="mb-4">Người có thẩm quyền tạo Git Tag trên commit mới nhất của `main` để release. Cả `feat-1` và `feat-2` sẽ cùng được phát hành.</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Thông báo & Dừng Release</h4><p>QA/Tech Lead thông báo cho cả team: "Release bị tạm dừng do có bug trong `feat-B`. Không tạo tag release lúc này."</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Sửa Bug</h4><p class="mb-4">Dev chịu trách nhiệm `feat-B` tạo một PR mới để sửa bug và merge vào `main`.</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. Xác nhận lại</h4><p class="mb-4">CI/CD deploy phiên bản `main` mới nhất (đã vá lỗi) lên Staging. QA thực hiện kiểm tra hồi quy (regression test) để đảm bảo bản vá không phá hỏng `feat-A` và `feat-C`.</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Tiếp tục Release</h4><p class="mb-4">Khi Staging đã ổn định, quy trình release tiếp tục như bình thường (tạo tag trên commit mới nhất của `main`).</p></div>
                     </div>
                 </div>
 
-                <!-- Scenario 2: Cherry-pick release -->
+                <!-- Scenario 2: Cherry-pick release (UPDATED WITH USER'S EXAMPLE) -->
                 <div class="mb-16">
-                    <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-cyan-400" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" /></svg>Kịch bản 2: Release "nóng" một Feature (Cherry-pick)</h3>
-                    <div class="mt-4 mb-6 text-sm bg-cyan-900/50 p-3 rounded-md border-l-4 border-cyan-500">
-                        <p><strong class="text-cyan-400">Tình huống:</strong> `Feat1` (commit <code class="commit-hash">bad123</code>) được merge vào `main` và có bug. Sau đó Dev2 tạo branch `feature/feat2` từ `main` (đã dính bug), và hoàn thành `Feat2` (commit <code class="commit-hash">good456</code>). Cần release `Feat2` ngay lập tức mà không chờ `Feat1` sửa xong.</p>
-                        <ul class="list-disc pl-5 mt-2 space-y-1">
-                            <li><strong class="highlight-text">Vấn đề:</strong> Không thể tag `main` để release. Không thể `revert` commit `bad123` vì sẽ gây conflict cho branch `feature/feat2`.</li>
-                            <li><strong class="highlight-text">Giải pháp:</strong> Tạo một branch release tạm thời và "nhặt" (cherry-pick) commit của `Feat2` sang.</li>
-                        </ul>
+                    <h3 class="flex items-center text-2xl font-bold mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-cyan-400" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" /></svg>Kịch bản 2 (Khẩn cấp): Release một commit duy nhất</h3>
+                    <div class="mt-4 mb-6 text-sm bg-cyan-900/50 p-4 rounded-lg border-l-4 border-cyan-500">
+                        <p><strong class="text-cyan-400">Tình huống:</strong> `main` đã tích hợp nhiều feature mới, nhưng có yêu cầu nghiệp vụ <strong class="highlight-text">bắt buộc</strong> phải release chỉ một feature duy nhất đã được test kỹ, trong khi các feature khác chưa sẵn sàng.</p>
+                         <p class="mt-2"><strong class="highlight-text">Giải pháp:</strong> Tạo một `release` branch tạm thời từ phiên bản production ổn định, và chỉ "nhặt" (cherry-pick) commit của feature cần release sang đó.</p>
                     </div>
                     <div class="relative timeline-container">
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Tìm commit "sạch" cuối cùng</h4><p class="mb-4">Xác định mã hash của commit trên `main` ngay trước khi `Feat1` được merge. Giả sử đó là <code class="commit-hash">stable00</code>.</p></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Tạo `release` branch từ commit "sạch"</h4><p class="mb-4">Tạo một branch mới cho việc release từ commit ổn định đã xác định.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout -b release/feat2-only stable00</code></pre></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. "Nhặt" commit của `Feat2`</h4><p class="mb-4">Áp dụng các commit của `Feat2` vào `release` branch vừa tạo. Git sẽ chỉ lấy nội dung thay đổi của commit đó.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block"># Lấy mã hash của commit Feat2 từ branch feature/feat2
-git cherry-pick good456</code></pre></div>
-                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Test và Deploy `release` branch</h4><p class="mb-4">Deploy branch `release/feat2-only` lên một môi trường test tạm để QA xác nhận. Nếu ổn, push branch này lên và tạo Tag từ commit cuối cùng của branch này để deploy Production.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git push origin release/feat2-only
-git tag -a v2.1.0 -m "Release Feature 2 only" release/feat2-only
-git push origin v2.1.0</code></pre></div>
-                         <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">5. Dọn dẹp và xử lý `main`</h4><p class="mb-4">Sau khi release thành công, Dev1 tiếp tục sửa bug của `Feat1` và merge vào `main`. Branch `feature/feat2` của Dev2 sau đó cũng được merge vào `main` như bình thường. Branch `release/feat2-only` có thể xóa đi.</p></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">1. Xác định commit cần release và phiên bản ổn định gần nhất</h4>
+                          <p class="mb-2">Tech Lead xem `git log` của `main` và xác định:</p>
+                           <pre><code class="text-xs block text-slate-400 p-3 bg-black rounded-md">
+<code class="commit-hash">c4a5f6</code> (HEAD -> main) feat: Add user profile page
+<code class="commit-hash">b3d4e5</code> feat: Integrate Google Login
+<code class="commit-hash">a2c3d9</code> feat: Add password reset
+<code class="commit-hash text-green-400">a2c3d4</code> feat: Add login form <span class="text-green-400">&lt;-- Commit cần release</span>
+<code class="commit-hash">f1a2b3</code> (tag: v1.4.0) chore: Update dependencies <span class="text-green-400">&lt;-- Phiên bản production ổn định</span>
+                            </code></pre>
+                            <p class="mt-2">Mục tiêu là chỉ release commit <code class="commit-hash text-green-400">a2c3d4</code>.</p>
+                        </div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">2. Tạo `release` branch từ phiên bản production gần nhất</h4><p class="mb-4">Tạo một branch mới từ tag production mới nhất (`v1.4.0`). Branch này sẽ là nền tảng "sạch" cho bản release mới.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block">git checkout -b release/v1.4.1-login-form v1.4.0</code></pre></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">3. "Nhặt" (Cherry-pick) commit cần release</h4><p class="mb-4">Dùng `git cherry-pick` để sao chép các thay đổi của commit <code class="commit-hash">a2c3d4</code> vào `release` branch.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block"># Đang trên branch release/v1.4.1-login-form
+git cherry-pick a2c3d4</code></pre>
+                        <p class="mt-2 text-sm">Lúc này, branch `release/v1.4.1-login-form` đã chứa code của v1.4.0 cộng với tính năng Login Form.</p>
+                        </div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">4. Deploy `release` branch và Test</h4><p class="mb-4">Push `release` branch lên và cấu hình CI/CD để deploy branch này lên Staging (hoặc một môi trường test riêng cho hotfix). QA vào xác nhận lần cuối cùng.</p></div>
+                         <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">5. Gắn Tag và Deploy Production</h4><p class="mb-4">Khi đã xác nhận ổn, gắn tag mới vào `release` branch và đẩy tag lên để deploy Production.</p><pre><code class="bg-slate-800 p-3 rounded-md text-sky-300 text-sm block"># Gắn tag vào commit cuối của branch release/v1.4.1-login-form
+git tag -a v1.4.1 -m "Release: Add login form feature"
+git push origin v1.4.1
+</code></pre></div>
+                        <div class="timeline-item animated slide-up"><div class="timeline-dot"></div><h4 class="text-lg font-bold mb-2">6. Hậu xử lý</h4><p class="mb-4"><strong class="highlight-text">Quan trọng:</strong> `main` vẫn giữ nguyên lịch sử. Team tiếp tục test các feature còn lại trên `main`. Khi tất cả đã sẵn sàng, lần release tiếp theo (ví dụ `v1.5.0`) sẽ được tạo từ `main` như bình thường. Git sẽ tự động xử lý và không áp dụng lại thay đổi của `a2c3d4`.</p></div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- NEW SECTION END -->
 
         <!-- Hotfix & Revert Section -->
-        <section id="hotfix-revert" class="py-20 px-4 bg-slate-900/50">
-            <div class="max-w-6xl mx-auto">
+        <section id="hotfix-revert" class="py-20">
+            <div class="max-w-6xl mx-auto px-4">
                 <div class="text-center">
                     <h2 class="section-title mb-4 animated slide-up">Xử Lý Sự Cố Production</h2>
                     <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">Quy trình xử lý các lỗi nghiêm trọng trên môi trường Production.</p>
