@@ -165,21 +165,23 @@ sequenceDiagram
 #### Mission Completion & Reward Flow
 ```mermaid
 graph TD
-    A[Activity Event] --> B{Find Active Missions}
-    B --> C[Calculate Progress]
-    C --> D{Mission Completed?}
-    D -->|Yes| E[Mark as COMPLETED]
-    D -->|No| F[Update Progress]
-    E --> G[Calculate Rewards]
-    F --> H[Save Progress]
-    G --> I[Generate Notification]
-    H --> J[Update Leaderboard]
-    I --> K[User Claims Reward]
-    J --> L[End Process]
-    K --> M[Mark as CLAIMED]
-    M --> N[Distribute Reward]
-    N --> O[Log History]
-    O --> L
+    A([Activity Event]) --> B{{Find Active Missions}}
+    B --> C([Calculate Progress])
+    C --> D{{Mission Completed?}}
+    D -->|Yes| E([Mark as COMPLETED])
+    D -->|No| F([Update Progress])
+    E --> G([Calculate Rewards])
+    F --> H([Save Progress])
+    G --> I([Generate Notification - đã hoàn thành nhiệm vụ])
+    H --> J([Update Leaderboard])
+    I --> K([User Claims Reward])
+    J --> L([End Process])
+    K --> M([Mark as CLAIMED])
+    M --> N([Distribute Reward])
+    N --> O([Log History])
+    O --> P([Generate Notification - Đã trao thưởng])
+    P --> Q([End])
+
 ```
 
 #### Streak Processing Logic
