@@ -29,7 +29,7 @@ graph TD
     B3 --> K3[gamification.login.activity]
     
     %% ACTIVITY TRACKING
-    K1 --> C[ActivityTrackingService - Kafka Consumer]
+    K1 --> C[ActivityTrackingService]
     K2 --> C
     K3 --> C
     
@@ -303,7 +303,7 @@ archiveExpiredData() {
 **OUTPUT**: Rewards (coins/tokens/items) + Notifications
 
 **Key Components:**
-1. **ActivityTrackingService** - Process external events
+1. **ActivityTrackingService** - Process external events - tracking activity 
 2. **MissionRecord** - Track user progress & rewards  
 3. **MissionProgress** - Individual mission state
 4. **ClaimedMission** - Reward history
