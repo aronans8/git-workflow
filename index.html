@@ -81,6 +81,55 @@
         .timeline-item { position: relative; padding-left: 3.5rem; /* pl-14 */ padding-bottom: 2.5rem; }
         .timeline-dot { position: absolute; top: 0.25rem; left: 1.25rem; transform: translateX(-50%); width: 1rem; height: 1rem; border-radius: 9999px; background-color: #0f172a; border: 2px solid #334155; }
         
+        /* Navigation */
+        .nav-toggle {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            display: block;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+        }
+        .nav-menu {
+            position: fixed;
+            top: 4rem;
+            right: 1rem;
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            min-width: 200px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 999;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+        }
+        .nav-menu.show {
+            transform: translateX(0);
+        }
+        .nav-menu a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #1e293b;
+            transition: color 0.2s ease;
+        }
+        .nav-menu a:hover {
+            color: #38bdf8;
+        }
+        .nav-menu a:last-child {
+            border-bottom: none;
+        }
+        
         /* Style for commit hashes and important keywords */
         .commit-hash {
             background-color: #334155;
@@ -98,6 +147,25 @@
     </style>
 </head>
 <body class="overflow-x-hidden">
+    <!-- Navigation Toggle -->
+    <button id="nav-toggle" class="nav-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </button>
+    
+    <!-- Navigation Menu -->
+    <nav id="nav-menu" class="nav-menu">
+        <a href="#problem">Rủi Ro & Vấn Đề</a>
+        <a href="#solution">Giải Pháp Git Workflow</a>
+        <a href="#modern-practices">Thực Tiễn Hiện Đại</a>
+        <a href="#branching-strategy">Chiến Lược Phân Nhánh</a>
+        <a href="#workflow">Quy Trình Team</a>
+        <a href="#cicd">CI/CD Pipeline</a>
+        <a href="#monitoring">Monitoring & Observability</a>
+        <a href="#bug-handling">Kịch Bản Phức Tạp</a>
+        <a href="#hotfix-revert">Xử Lý Sự Cố</a>
+    </nav>
 
     <header class="text-center p-8 my-16 md:my-24">
         <div class="max-w-4xl mx-auto">
@@ -165,8 +233,102 @@
             </div>
         </section>
 
+        <!-- Modern Git Practices Section -->
+        <section id="modern-practices" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="section-title mb-4 animated slide-up">Thực Tiễn Git Hiện Đại</h2>
+                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">
+                        Áp dụng các quy chuẩn và công cụ hiện đại để nâng cao chất lượng code và tự động hóa quy trình.
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8 mb-16">
+                    <!-- Conventional Commits -->
+                    <div class="card p-6 rounded-lg animated slide-up" style="animation-delay: 0.4s;">
+                        <div class="mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Conventional Commits</h3>
+                        <p class="mb-4">Chuẩn hóa format commit message để dễ đọc, tự động tạo changelog và xác định phiên bản.</p>
+                        <div class="bg-slate-800 p-4 rounded-md text-sm">
+                            <p class="text-slate-300 mb-2">Format: <code class="text-sky-300">&lt;type&gt;(&lt;scope&gt;): &lt;description&gt;</code></p>
+                            <div class="space-y-1 text-xs">
+                                <div><span class="text-green-400">feat(auth):</span> add Google OAuth integration</div>
+                                <div><span class="text-blue-400">fix(ui):</span> resolve button alignment issue</div>
+                                <div><span class="text-purple-400">docs(api):</span> update authentication guide</div>
+                                <div><span class="text-red-400">BREAKING CHANGE:</span> remove legacy API v1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Semantic Versioning -->
+                    <div class="card p-6 rounded-lg animated slide-up" style="animation-delay: 0.6s;">
+                        <div class="mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 013 12V7a4 4 0 014-4z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Semantic Versioning Chi Tiết</h3>
+                        <p class="mb-4">Quy chuẩn đánh số phiên bản có ý nghĩa, giúp team và user hiểu được tác động của bản cập nhật.</p>
+                        <div class="bg-slate-800 p-4 rounded-md text-sm">
+                            <p class="text-slate-300 mb-2">Format: <code class="text-sky-300">MAJOR.MINOR.PATCH</code></p>
+                            <div class="space-y-2 text-xs">
+                                <div><span class="text-red-400">MAJOR (v2.0.0):</span> Breaking changes, API không tương thích</div>
+                                <div><span class="text-yellow-400">MINOR (v1.5.0):</span> Tính năng mới, backward compatible</div>
+                                <div><span class="text-green-400">PATCH (v1.4.1):</span> Bug fixes, không thay đổi API</div>
+                                <div><span class="text-purple-400">PRE-RELEASE:</span> v1.5.0-beta.1, v2.0.0-rc.1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pre-commit Hooks -->
+                    <div class="card p-6 rounded-lg animated slide-up" style="animation-delay: 0.8s;">
+                        <div class="mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Pre-commit Hooks</h3>
+                        <p class="mb-4">Tự động kiểm tra code trước khi commit, đảm bảo chất lượng và consistency.</p>
+                        <div class="bg-slate-800 p-4 rounded-md text-sm">
+                            <div class="space-y-1 text-xs">
+                                <div>✅ <span class="text-green-400">Lint code</span> (ESLint, Prettier)</div>
+                                <div>✅ <span class="text-blue-400">Run tests</span> (Unit tests)</div>
+                                <div>✅ <span class="text-yellow-400">Check commit format</span> (Conventional commits)</div>
+                                <div>✅ <span class="text-purple-400">Scan secrets</span> (GitGuardian, TruffleHog)</div>
+                                <div>✅ <span class="text-cyan-400">Check dependencies</span> (Security vulnerabilities)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Branch Protection -->
+                    <div class="card p-6 rounded-lg animated slide-up" style="animation-delay: 1.0s;">
+                        <div class="mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Branch Protection Rules</h3>
+                        <p class="mb-4">Tự động bảo vệ branch chính và đảm bảo quy trình review được tuân thủ.</p>
+                        <div class="bg-slate-800 p-4 rounded-md text-sm">
+                            <div class="space-y-1 text-xs">
+                                <div>🛡️ <span class="text-red-400">Require PR reviews</span> (tối thiểu 2 người)</div>
+                                <div>🛡️ <span class="text-orange-400">Require status checks</span> (CI must pass)</div>
+                                <div>🛡️ <span class="text-yellow-400">Require branches up to date</span></div>
+                                <div>🛡️ <span class="text-green-400">Restrict push to main</span></div>
+                                <div>🛡️ <span class="text-blue-400">Require linear history</span> (no merge commits)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- NEW SECTION: Branching Strategy -->
-        <section id="branching-strategy" class="py-20 px-4">
+        <section id="branching-strategy" class="py-20 px-4 bg-slate-900/50">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
                     <h2 class="section-title mb-4 animated slide-up">Chiến Lược Phân Nhánh (Branching Strategy)</h2>
@@ -295,10 +457,52 @@ git push origin v1.5.0</code></pre>
                 <div id="pipeline-container" class="relative p-8 rounded-lg pipeline-bg border border-slate-800">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
                         <!-- Stages -->
-                        <div id="build-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between"><h3 class="text-lg font-bold">1. BUILD</h3><p class="text-sm stage-description">Tạo ra một artifact (vd: Docker image) có thể deploy.</p></div>
-                        <div id="preprod-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between"><div class="pipeline-arrow left-[-15%] hidden md:block"></div><h3 class="text-lg font-bold">2. STAGING</h3><p class="text-sm stage-description">Deploy tự động cho QA/QC kiểm thử tích hợp.</p><div id="preprod-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-indigo-500/10 border border-indigo-500 text-indigo-300 text-xs px-2 py-1 rounded-md inline-block">Config: Staging</div></div></div>
-                        <div id="staging-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between"><div class="pipeline-arrow left-[-15%] hidden md:block"></div><h3 class="text-lg font-bold">3. APPROVAL</h3><p class="text-sm stage-description">Chờ phê duyệt và tạo Git Tag để deploy Production.</p><div id="staging-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-amber-500/10 border border-amber-500 text-amber-300 text-xs px-2 py-1 rounded-md inline-block">Action: Create Tag</div></div></div>
-                        <div id="prod-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between"><div class="pipeline-arrow left-[-15%] hidden md:block"></div><h3 class="text-lg font-bold">4. PRODUCTION</h3><p class="text-sm stage-description">Deploy cho người dùng cuối sau khi có Git Tag mới.</p><div id="prod-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-green-500/10 border border-green-500 text-green-300 text-xs px-2 py-1 rounded-md inline-block">Config: Production</div></div></div>
+                        <div id="build-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between">
+                            <h3 class="text-lg font-bold">1. BUILD & TEST</h3>
+                            <p class="text-sm stage-description">Build code, chạy tests, scan security, quality gates.</p>
+                            <div class="text-xs mt-2 space-y-1 text-slate-400">
+                                <div>✅ Unit Tests</div>
+                                <div>✅ Code Coverage</div>
+                                <div>✅ Security Scan</div>
+                                <div>✅ Quality Gates</div>
+                            </div>
+                        </div>
+                        <div id="preprod-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between">
+                            <div class="pipeline-arrow left-[-15%] hidden md:block"></div>
+                            <h3 class="text-lg font-bold">2. STAGING</h3>
+                            <p class="text-sm stage-description">Deploy tự động + Integration tests + Performance tests.</p>
+                            <div class="text-xs mt-2 space-y-1 text-slate-400">
+                                <div>🔄 Auto Deploy</div>
+                                <div>🧪 E2E Tests</div>
+                                <div>⚡ Performance</div>
+                                <div>📊 Monitoring</div>
+                            </div>
+                            <div id="preprod-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-indigo-500/10 border border-indigo-500 text-indigo-300 text-xs px-2 py-1 rounded-md inline-block">Config: Staging Environment</div></div>
+                        </div>
+                        <div id="staging-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between">
+                            <div class="pipeline-arrow left-[-15%] hidden md:block"></div>
+                            <h3 class="text-lg font-bold">3. APPROVAL</h3>
+                            <p class="text-sm stage-description">QA approval + Security review + Git Tag creation.</p>
+                            <div class="text-xs mt-2 space-y-1 text-slate-400">
+                                <div>👥 QA Sign-off</div>
+                                <div>🔒 Security Review</div>
+                                <div>📋 Change Log</div>
+                                <div>🏷️ Git Tag</div>
+                            </div>
+                            <div id="staging-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-amber-500/10 border border-amber-500 text-amber-300 text-xs px-2 py-1 rounded-md inline-block">Action: Create Release Tag</div></div>
+                        </div>
+                        <div id="prod-stage" class="relative text-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 h-full flex flex-col justify-between">
+                            <div class="pipeline-arrow left-[-15%] hidden md:block"></div>
+                            <h3 class="text-lg font-bold">4. PRODUCTION</h3>
+                            <p class="text-sm stage-description">Blue-Green deploy + Health checks + Monitoring alerts.</p>
+                            <div class="text-xs mt-2 space-y-1 text-slate-400">
+                                <div>🔄 Blue-Green Deploy</div>
+                                <div>❤️ Health Checks</div>
+                                <div>📈 Metrics</div>
+                                <div>🚨 Alerting</div>
+                            </div>
+                            <div id="prod-config" class="config-popup absolute bottom-full mb-2 w-full left-0 px-4"><div class="bg-green-500/10 border border-green-500 text-green-300 text-xs px-2 py-1 rounded-md inline-block">Live Production System</div></div>
+                        </div>
                     </div>
                     <div id="artifact" class="left-1/6 top-1/2 -translate-y-1/2">
                          <div class="w-16 h-16 bg-sky-500/20 border-2 border-sky-400 rounded-lg flex items-center justify-center shadow-lg shadow-sky-500/20 flex-col text-center">
@@ -312,6 +516,111 @@ git push origin v1.5.0</code></pre>
                     <button id="preprod-btn" class="deploy-btn hidden font-semibold py-2 px-6 rounded-lg text-base">Deploy to Staging</button>
                     <button id="staging-btn" class="deploy-btn hidden font-semibold py-2 px-6 rounded-lg text-base">Approve & Tag for Prod</button>
                     <button id="reset-btn" class="deploy-btn hidden font-semibold py-2 px-6 rounded-lg text-base">Làm lại</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Monitoring & Observability Section -->
+        <section id="monitoring" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="section-title mb-4 animated slide-up">Monitoring & Observability</h2>
+                    <p class="text-lg mb-12 animated slide-up" style="animation-delay: 0.2s;">
+                        Theo dõi, đo lường và cảnh báo để đảm bảo hệ thống hoạt động ổn định và phát hiện sự cố sớm.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                    <!-- Metrics -->
+                    <div class="card p-6 rounded-lg animated slide-up" style="animation-delay: 0.4s;">
+                        <div class="mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Application Metrics</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Response Time:</span>
+                                <span class="text-green-400">&lt; 200ms</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Error Rate:</span>
+                                <span class="text-green-400">&lt; 0.1%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Throughput:</span>
+                                <span class="text-blue-400">1000 RPS</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Availability:</span>
+                                <span class="text-green-400">99.9%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logs -->
+                    <div class="card p-6 rounded-lg animated slide-up" style="animation-delay: 0.6s;">
+                        <div class="mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Centralized Logging</h3>
+                        <div class="space-y-2 text-sm">
+                            <div>📄 <span class="text-slate-300">Structured JSON logs</span></div>
+                            <div>🔍 <span class="text-slate-300">Log aggregation (ELK Stack)</span></div>
+                            <div>🏷️ <span class="text-slate-300">Trace correlation</span></div>
+                            <div>⚠️ <span class="text-slate-300">Error tracking (Sentry)</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Alerting -->
+                    <div class="card p-6 rounded-lg animated slide-up" style="animation-delay: 0.8s;">
+                        <div class="mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-5 5v-5zM12 17.75l-6.172-6.172a4 4 0 010-5.656L12 2.75l6.172 6.172a4 4 0 010 5.656L12 17.75z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Smart Alerting</h3>
+                        <div class="space-y-2 text-sm">
+                            <div>🚨 <span class="text-slate-300">PagerDuty integration</span></div>
+                            <div>📱 <span class="text-slate-300">Slack notifications</span></div>
+                            <div>📊 <span class="text-slate-300">SLA breach alerts</span></div>
+                            <div>🤖 <span class="text-slate-300">Auto-remediation</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deployment Strategies -->
+                <div class="bg-slate-900 border border-slate-800 rounded-lg p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Chiến Lược Deploy An Toàn</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-bold text-sky-400 mb-4">Blue-Green Deployment</h4>
+                            <p class="mb-4 text-sm">Duy trì 2 môi trường production giống hệt nhau. Deploy lên môi trường "xanh", test, rồi chuyển traffic.</p>
+                            <div class="bg-slate-800 p-4 rounded-md text-sm">
+                                <div class="space-y-1 text-xs">
+                                    <div>🔵 <span class="text-blue-400">Blue Environment</span> (Current: v1.4.0)</div>
+                                    <div>🟢 <span class="text-green-400">Green Environment</span> (New: v1.5.0)</div>
+                                    <div>↔️ <span class="text-slate-300">Load Balancer Switch</span></div>
+                                    <div>⚡ <span class="text-yellow-400">Zero Downtime</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-purple-400 mb-4">Canary Deployment</h4>
+                            <p class="mb-4 text-sm">Triển khai phiên bản mới cho một phần nhỏ traffic trước, monitor metrics, rồi mở rộng dần.</p>
+                            <div class="bg-slate-800 p-4 rounded-md text-sm">
+                                <div class="space-y-1 text-xs">
+                                    <div>📊 <span class="text-slate-300">5% traffic → New version</span></div>
+                                    <div>📈 <span class="text-green-400">Monitor metrics</span></div>
+                                    <div>🚀 <span class="text-blue-400">Gradually increase to 100%</span></div>
+                                    <div>🔄 <span class="text-red-400">Auto rollback if issues</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -423,6 +732,43 @@ git push origin main --tags</code></pre></div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Navigation menu functionality
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+            });
+            
+            // Close nav when clicking on a link
+            navMenu.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    navMenu.classList.remove('show');
+                }
+            });
+            
+            // Close nav when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('show');
+                }
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Animation observer
             const animatedElements = document.querySelectorAll('.animated');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -484,10 +830,10 @@ git push origin main --tags</code></pre></div>
                 resetBtn.classList.remove('active');
 
                 artifactTag.textContent = '';
-                buildStageDesc.innerHTML = 'Tạo ra một artifact (vd: Docker image) có thể deploy.';
-                preprodStageDesc.innerHTML = 'Deploy tự động cho QA/QC kiểm thử tích hợp.';
-                stagingStageDesc.innerHTML = 'Chờ phê duyệt và tạo Git Tag để deploy Production.';
-                prodStageDesc.innerHTML = 'Deploy cho người dùng cuối sau khi có Git Tag mới.';
+                buildStageDesc.innerHTML = 'Build code, chạy tests, scan security, quality gates.';
+                preprodStageDesc.innerHTML = 'Deploy tự động + Integration tests + Performance tests.';
+                stagingStageDesc.innerHTML = 'QA approval + Security review + Git Tag creation.';
+                prodStageDesc.innerHTML = 'Blue-Green deploy + Health checks + Monitoring alerts.';
 
 
                 setTimeout(() => { 
@@ -504,7 +850,8 @@ git push origin main --tags</code></pre></div>
                     startBtn.classList.remove('active');
                     currentTag = (Math.random() + 1).toString(36).substring(2, 9);
                     artifactTag.textContent = currentTag;
-                    buildStageDesc.innerHTML = `Đã tạo artifact: <code class="commit-hash">${currentTag}</code>`;
+                    buildStageDesc.innerHTML = `✅ Build thành công: <code class="commit-hash">${currentTag}</code><br>
+                        <small class="text-green-400">Tests: ✅ Security: ✅ Quality: ✅</small>`;
 
                     artifact.style.opacity = '1';
                     artifact.style.transform = 'scale(1)';
@@ -512,7 +859,8 @@ git push origin main --tags</code></pre></div>
                         artifact.style.left = `${getTargetX(preprodStageEl)}px`;
                         setTimeout(() => {
                             if(preprodConfig) preprodConfig.classList.add('show');
-                            preprodStageDesc.innerHTML = `Đang deploy artifact <code class="commit-hash">${currentTag}</code>...`;
+                            preprodStageDesc.innerHTML = `🚀 Đang deploy <code class="commit-hash">${currentTag}</code> lên Staging...<br>
+                                <small class="text-blue-400">E2E Tests: Running... Performance: Monitoring...</small>`;
                             startBtn.classList.add('hidden');
                             preprodBtn.classList.remove('hidden');
                             preprodBtn.disabled = false;
@@ -532,7 +880,9 @@ git push origin main --tags</code></pre></div>
                     artifact.style.left = `${getTargetX(stagingStageEl)}px`;
                     setTimeout(() => {
                         if(stagingConfig) stagingConfig.classList.add('show');
-                        stagingStageDesc.innerHTML = `Artifact <code class="commit-hash">${currentTag}</code> đã được QA test OK. Sẵn sàng tạo tag!`;
+                        stagingStageDesc.innerHTML = `✅ Staging deploy thành công! <code class="commit-hash">${currentTag}</code><br>
+                            <small class="text-green-400">QA: ✅ Security: ✅ Performance: ✅</small><br>
+                            <small class="text-yellow-400">Sẵn sàng tạo release tag!</small>`;
                         preprodBtn.classList.add('hidden');
                         stagingBtn.classList.remove('hidden');
                         stagingBtn.disabled = false;
@@ -548,11 +898,14 @@ git push origin main --tags</code></pre></div>
                     stagingBtn.disabled = true;
                     stagingBtn.classList.remove('active');
                     if(stagingConfig) stagingConfig.classList.remove('show');
-                    stagingStageDesc.innerHTML = `Đã tạo tag <code class="commit-hash">v1.3.0</code> cho artifact <code class="commit-hash">${currentTag}</code>`;
+                    stagingStageDesc.innerHTML = `🏷️ Tag <code class="commit-hash">v1.3.0</code> đã được tạo cho <code class="commit-hash">${currentTag}</code><br>
+                        <small class="text-blue-400">Triggering production deployment...</small>`;
                     artifact.style.left = `${getTargetX(prodStageEl)}px`;
                     setTimeout(() => {
                         if(prodConfig) prodConfig.classList.add('show');
-                        prodStageDesc.innerHTML = `Đã deploy thành công phiên bản <code class="commit-hash">v1.3.0</code>!`;
+                        prodStageDesc.innerHTML = `🎉 Production deploy thành công! <code class="commit-hash">v1.3.0</code><br>
+                            <small class="text-green-400">Health: ✅ Traffic: 100% Monitoring: Active</small><br>
+                            <small class="text-blue-400">Zero downtime achieved with Blue-Green deployment</small>`;
                         stagingBtn.classList.add('hidden');
                         resetBtn.classList.remove('hidden');
                         resetBtn.disabled = false;
